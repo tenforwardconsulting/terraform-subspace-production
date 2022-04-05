@@ -99,13 +99,18 @@ resource "aws_acm_certificate" "production" {
   }
 }
 
+locals {
+  cert_arn = length(var.lb_domain_name) > 0 ? aws_acm_certificate.production[0].arn : var.lb_certificate_arn
+}
+
 resource "aws_lb_listener" "tls" {
-  count = length(var.lb_domain_name) > 0 ? 1 : 0
+  count = length(var.lb_domain_name) > 0 || var.lb_certificate_arn != null ? 1 : 0
   load_balancer_arn = aws_lb.production.arn
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = aws_acm_certificate.production[0].arn
+  # certificate_arn   = aws_acm_certificate.production[0].arn
+  certificate_arn   = local.cert_arn
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.production[0].arn
