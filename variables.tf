@@ -33,6 +33,10 @@ variable lb_alternate_names {
   type = list(string)
   default = []
 }
+variable lb_certificate_arn {
+  type = string
+  default = null
+}
 variable lb_health_check_path { type = string }
 
 # database.tf
