@@ -49,3 +49,4 @@ variable database_password { type = string }
 variable database_allocated_storage { type = number }
 variable database_max_allocated_storage { type = number }
 variable database_iops { type = number }
+variable final_snapshot_identifier { type = string }
