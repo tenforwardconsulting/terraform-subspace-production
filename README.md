@@ -1,13 +1,13 @@
-# Subspace: Production Environment tf module
+# Subspace: Oxenwagen Environment tf module
 
-This terraform module is used as a default, standard, load balanced environment suitable for initial production deployes.  It has a lot of configuration but it also fairly opinionated.
+This terraform module is used as a default, standard, load balanced environment suitable for initial oxenwagen deploys.  It has a lot of configuration but it also fairly opinionated.
 
 
 # Load Balancer
 The load balancer is tricky.  If you have access to the DNS zone on AWS/Route53, it can be provisioned automatically (if we write this feature):
 
-    lb_domain_name = "my.production.site"
-    lb_alternate_names = ["www.production.site", "production.site"]
+    lb_domain_name = "my.oxenwagen.site"
+    lb_alternate_names = ["www.oxenwagen.site", "oxenwagen.site"]
 
 If not, e.g. if you have to do email or outside DNS validation, you can instead maunally create a cert on AWS and then specify the ARN:
 
