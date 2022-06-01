@@ -4,7 +4,7 @@ resource "aws_instance" "web" {
   instance_type          = var.web_instance_type
   key_name               = aws_key_pair.subspace.key_name
   subnet_id              = data.aws_subnets.subnets.ids[count.index % length(data.aws_subnets.subnets)]
-  vpc_security_group_ids = [aws_security_group.oxenwagen-webservers.id, aws_security_group.oxenwagen-internal.id]
+  vpc_security_group_ids = [aws_security_group.production-webservers.id, aws_security_group.production-internal.id]
   monitoring             = true
 
   tags = {

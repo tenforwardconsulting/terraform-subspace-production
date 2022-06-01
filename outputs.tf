@@ -5,11 +5,11 @@ output worker_instance_ips {
   value = aws_eip.worker[*].public_ip
 }
 output certification_dns_options {
-  value = aws_acm_certificate.oxenwagen[*].domain_validation_options
+  value = aws_acm_certificate.production[*].domain_validation_options
 }
 
 output database_endpoint {
-  value = aws_db_instance.oxenwagen.endpoint
+  value = aws_db_instance.production.endpoint
 }
 
 output "inventory" {
