@@ -20,3 +20,9 @@ output "inventory" {
     users = concat([ for i in aws_instance.web : "ubuntu"], [ for i in aws_instance.worker : "ubuntu"] )
   }
 }
+
+data "aws_caller_identity" "current" {}
+
+output "switch_role_url" {
+  value = "https://signin.aws.amazon.com/switchrole?roleName=DelegatedAccess&account=${data.aws_caller_identity.current.account_id}&displayName=${var.project_name}"
+}
