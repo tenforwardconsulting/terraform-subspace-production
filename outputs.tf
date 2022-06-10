@@ -26,3 +26,11 @@ data "aws_caller_identity" "current" {}
 output "switch_role_url" {
   value = "https://signin.aws.amazon.com/switchrole?roleName=DelegatedAccess&account=${data.aws_caller_identity.current.account_id}&displayName=${var.project_name}"
 }
+
+output "lb_http_arn" {
+  value = aws_lb_listener.http.arn
+}
+
+output "tls_http_arn" {
+  value = aws_lb_listener.tls[0].arn
+}
