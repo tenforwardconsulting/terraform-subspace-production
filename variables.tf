@@ -23,8 +23,12 @@ variable web_volume_size {
   default = 16 #GB
 }
 
-
 # load_balancer.tf
+variable route53_zone_id {
+  type = string
+  default = ""
+}
+
 variable lb_domain_name {
   type = string
   default = ""
@@ -53,3 +57,12 @@ variable final_snapshot_identifier { type = string }
 
 # role.tf
 variable delegated_access_account_id { type = string }
+
+# redis.tf
+variable redis_node_count {
+  type = number
+  default = 0
+}
+variable redis_node_type { type = string }
+variable redis_parameter_group_name { type = string }
+variable redis_engine_version { type = string }
