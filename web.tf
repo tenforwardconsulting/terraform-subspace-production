@@ -8,7 +8,7 @@ resource "aws_instance" "web" {
   monitoring             = true
 
   tags = {
-    Name = "${var.project_environment}-web${count.index+1}"
+    Name = "${var.project_name}-${var.project_environment}-web${count.index+1}"
   }
 
   root_block_device {
@@ -24,7 +24,7 @@ resource aws_eip "web" {
   instance = aws_instance.web[count.index].id
 
   tags = {
-    Name = "${var.project_environment}-web${count.index+1}"
+    Name = "${var.project_name}-${var.project_environment}-web${count.index+1}"
   }
 }
 

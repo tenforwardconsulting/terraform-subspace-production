@@ -14,7 +14,7 @@ resource "aws_instance" "worker" {
   }
 
   tags = {
-    Name = "${var.project_environment}-worker${count.index+1}"
+    Name = "${var.project_name}-${var.project_environment}-worker${count.index+1}"
   }
 }
 
@@ -24,7 +24,7 @@ resource aws_eip "worker" {
   instance = aws_instance.worker[count.index].id
 
   tags = {
-    Name = "${var.project_environment}-worker${count.index+1}"
+    Name = "${var.project_name}-${var.project_environment}-worker${count.index+1}"
   }
 }
 
