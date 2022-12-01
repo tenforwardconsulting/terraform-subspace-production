@@ -19,10 +19,10 @@ If you do not specify either `lb_domain_name` or `lb_certificate_arn` your load 
 
 Most rails projects need a redis for things like sidekiq, actioncable, etc, so this tf script can create an elasticache redis instance/cluster for you.  Alternatively, you can configure a worker server to run redis, but using elasticache is is usually preferred.
 
-  # Number of redis nodes in the cluster.
-  redis_node_count = 1
-  redis_node_type = "cache.t4g.micro"
-  redis_engine_version = "6.x"
-  redis_parameter_group_name = "default.redis6.x"
+    # Number of redis nodes in the cluster.
+    redis_node_count = 1
+    redis_node_type = "cache.t4g.micro"
+    redis_engine_version = "6.x"
+    redis_parameter_group_name = "default.redis6.x"
 
 By default, this will *not* create a redis cluster.

@@ -63,6 +63,15 @@ variable redis_node_count {
   type = number
   default = 0
 }
-variable redis_node_type { type = string }
-variable redis_parameter_group_name { type = string }
-variable redis_engine_version { type = string }
+variable redis_node_type {
+  type = string
+  default = ""
+}
+variable redis_parameter_group_name {
+  type = string
+  default = ""
+}
+variable redis_engine_version {
+  type = string
+  default = ""
+}
