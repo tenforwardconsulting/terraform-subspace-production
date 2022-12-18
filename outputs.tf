@@ -36,5 +36,5 @@ output tls_http_arn {
 }
 
 output "redis_nodes" {
-  value = aws_elasticache_cluster.redis[0].cache_nodes
+  value = aws_elasticache_cluster.redis[*].cache_nodes
 }
