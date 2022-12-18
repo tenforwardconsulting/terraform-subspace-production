@@ -11,9 +11,9 @@ resource "aws_instance" "web" {
     Name = "${var.project_environment}-web${count.index+1}"
   }
 
-  lifecycle {
-    ignore_changes = [key_name]
-  }
+  # lifecycle {
+  #   ignore_changes = [key_name]
+  # }
 
   root_block_device {
     volume_size = var.web_volume_size
