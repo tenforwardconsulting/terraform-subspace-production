@@ -2,14 +2,13 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.0"
+      version = "~> 4.0"
     }
   }
 }
 
 provider aws {
   region = var.aws_region
-  profile = "subspace-${var.project_name}"
   default_tags {
     tags = {
       Environment = var.project_environment

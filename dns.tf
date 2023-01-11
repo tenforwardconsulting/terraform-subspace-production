@@ -4,7 +4,7 @@ resource "aws_route53_record" "web" {
   name    = aws_instance.web[count.index].tags["Name"]
   type    = "A"
   ttl     = 300
-  records = [aws_instance.web[count.index].public_ip]
+  records = [aws_eip.web[count.index].public_ip]
 }
 
 resource "aws_route53_record" "worker" {
@@ -13,7 +13,7 @@ resource "aws_route53_record" "worker" {
   name    = aws_instance.worker[count.index].tags["Name"]
   type    = "A"
   ttl     = 300
-  records = [aws_instance.worker[count.index].public_ip]
+  records = [aws_eip.worker[count.index].public_ip]
 }
 
 resource "aws_route53_record" "lb" {

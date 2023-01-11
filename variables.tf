@@ -69,9 +69,13 @@ variable redis_node_type {
 }
 variable redis_parameter_group_name {
   type = string
-  default = ""
+  default = "default.redis7"
 }
 variable redis_engine_version {
   type = string
-  default = ""
+  default = "7.0"
+}
+variable redis_apply_immediately {
+  type = bool
+  default = false
 }
