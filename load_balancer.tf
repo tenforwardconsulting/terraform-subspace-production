@@ -100,7 +100,8 @@ resource "aws_acm_certificate" "production" {
 }
 
 resource "aws_route53_record" "cert_validation" {
-  for_each = {
+
+  for_each = length(var.lb_domain_name) == 0 ? {} : {
     for dvo in aws_acm_certificate.production[0].domain_validation_options : dvo.domain_name => {
       name   = dvo.resource_record_name
       record = dvo.resource_record_value
