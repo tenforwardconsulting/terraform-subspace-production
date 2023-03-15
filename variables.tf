@@ -56,7 +56,10 @@ variable database_iops { type = number }
 variable final_snapshot_identifier { type = string }
 
 # role.tf
-variable delegated_access_account_id { type = string }
+variable delegated_access_account_id {
+  type = string
+  default = ""
+}
 
 # redis.tf
 variable redis_node_count {
