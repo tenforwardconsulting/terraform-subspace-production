@@ -2,16 +2,19 @@ resource "aws_elasticache_cluster" "redis" {
   count                = var.redis_node_count > 0 ? 1 : 0
   cluster_id           = "production"
   engine               = "redis"
-  subnet_group_name    = aws_elasticache_subnet_group.redis_subnet.name
+  apply_immediately    = var.redis_apply_immediately
+  subnet_group_name    = aws_elasticache_subnet_group.redis_subnet[0].name
   node_type            = var.redis_node_type
   num_cache_nodes      = var.redis_node_count
-  parameter_group_name = "default.redis6.x"
-  engine_version       = "6.x"
+  engine_version       = var.redis_engine_version
+  parameter_group_name = var.redis_parameter_group_name
+
   port                 = 6379
   security_group_ids   = [aws_security_group.production-redis[0].id]
 }
 
 resource "aws_elasticache_subnet_group" "redis_subnet" {
+  count      = var.redis_node_count > 0 ? 1 : 0
   name       = "production-cache-subnet"
   subnet_ids = data.aws_subnets.subnets.ids
 }

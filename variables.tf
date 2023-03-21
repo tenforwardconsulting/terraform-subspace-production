@@ -56,7 +56,10 @@ variable database_iops { type = number }
 variable final_snapshot_identifier { type = string }
 
 # role.tf
-variable delegated_access_account_id { type = string }
+variable delegated_access_account_id {
+  type = string
+  default = ""
+}
 
 # redis.tf
 variable redis_node_count {
@@ -69,9 +72,13 @@ variable redis_node_type {
 }
 variable redis_parameter_group_name {
   type = string
-  default = ""
+  default = "default.redis7"
 }
 variable redis_engine_version {
   type = string
-  default = ""
+  default = "7.0"
+}
+variable redis_apply_immediately {
+  type = bool
+  default = false
 }
