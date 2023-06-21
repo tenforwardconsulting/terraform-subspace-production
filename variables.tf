@@ -54,6 +54,7 @@ variable database_allocated_storage { type = number }
 variable database_max_allocated_storage { type = number }
 variable database_iops { type = number }
 variable final_snapshot_identifier { type = string }
+variable snapshot_identifier { type = string }
 
 # role.tf
 variable delegated_access_account_id {
