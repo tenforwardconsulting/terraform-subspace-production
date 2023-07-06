@@ -59,10 +59,11 @@ resource "aws_lb_listener" "http" {
   default_action {
     type             = "redirect"
     redirect {
-      path        = "/#{host}:443/#{path}?#{query}"
+      path        = "/#{host}:443/#{path}"
       port        = "443"
       protocol    = "HTTPS"
       status_code = "HTTP_301"
+      query       = "#{query}"
     }
   }
 }

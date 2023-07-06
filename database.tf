@@ -15,4 +15,5 @@ resource "aws_db_instance" "production" {
   vpc_security_group_ids   = [aws_security_group.production-rds.id]
   storage_encrypted        = true
   final_snapshot_identifier = var.final_snapshot_identifier
+  snapshot_identifier      = var.snapshot_identifier
 }
