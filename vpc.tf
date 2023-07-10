@@ -25,11 +25,11 @@ resource "aws_subnet" "production-internal-c" {
 }
 
 resource "aws_db_subnet_group" "production-subnet-group" {
-  name       = "production-${var.project_name}"
+  name       = "${var.project_environment}-${var.project_name}"
   subnet_ids = [aws_subnet.production-internal-a.id, aws_subnet.production-internal-b.id, aws_subnet.production-internal-c.id]
 
   tags = {
-    Name = "production-${var.project_name}"
+    Name = "${var.project_environment}-${var.project_name}"
   }
 }
 
