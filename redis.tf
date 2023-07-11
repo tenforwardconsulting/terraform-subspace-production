@@ -1,6 +1,6 @@
 resource "aws_elasticache_cluster" "redis" {
   count                = var.redis_node_count > 0 ? 1 : 0
-  cluster_id           = "production"
+  cluster_id           = "${var.project_environment}"
   engine               = "redis"
   apply_immediately    = var.redis_apply_immediately
   subnet_group_name    = aws_elasticache_subnet_group.redis_subnet[0].name
@@ -15,7 +15,7 @@ resource "aws_elasticache_cluster" "redis" {
 
 resource "aws_elasticache_subnet_group" "redis_subnet" {
   count      = var.redis_node_count > 0 ? 1 : 0
-  name       = "production-cache-subnet"
+  name       = "${var.project_environment}-cache-subnet"
   subnet_ids = data.aws_subnets.subnets.ids
 }
 
