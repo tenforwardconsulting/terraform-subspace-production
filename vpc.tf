@@ -1,9 +1,15 @@
 resource "aws_vpc" "production-internal" {
   cidr_block = "172.31.0.0/16"
+  tags = {
+    Name = "${var.project_name}-${var.project_environment}-internal"
+  }
 }
 
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.production-internal.id
+  tags = {
+    Name = "${var.project_name}-gw"
+  }
 }
 
 resource "aws_subnet" "production-internal-a" {

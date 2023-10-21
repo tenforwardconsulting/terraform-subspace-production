@@ -16,4 +16,5 @@ resource "aws_db_instance" "production" {
   storage_encrypted        = true
   final_snapshot_identifier = var.final_snapshot_identifier
   snapshot_identifier      = var.snapshot_identifier
+  backup_retention_period  = var.database_backup_retention_period
 }

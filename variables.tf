@@ -54,8 +54,12 @@ variable database_allocated_storage { type = number }
 variable database_max_allocated_storage { type = number }
 variable database_iops { type = number }
 variable final_snapshot_identifier { type = string }
-variable snapshot_identifier { 
+variable snapshot_identifier {
   type = string
+  default = null
+}
+variable "database_backup_retention_period" {
+  type = number
   default = null
 }
 
