@@ -1,5 +1,12 @@
 resource "aws_vpc" "production-internal" {
   cidr_block = "172.31.0.0/16"
+
+  tags = {
+    Name = "${var.project_environment}-${var.project_name}"
+  }
+  tags_all = {
+    Name = "${var.project_environment}-${var.project_name}"
+  }
 }
 
 resource "aws_internet_gateway" "gw" {
@@ -94,6 +101,12 @@ resource "aws_security_group" "production-internal" {
   name        = "${var.project_environment}-internal"
   description = "${var.project_environment}-internal"
   vpc_id      = aws_vpc.production-internal.id
+  tags = {
+    Name = "${var.project_environment}-${var.project_name}"
+  }
+  tags_all = {
+    Name = "${var.project_environment}-${var.project_name}"
+  }
 
   ingress {
     description      = "All traffic from webservers and workers"
