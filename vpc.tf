@@ -1,12 +1,5 @@
 resource "aws_vpc" "production-internal" {
   cidr_block = "172.31.0.0/16"
-
-  tags = {
-    Name = "${var.project_environment}-${var.project_name}"
-  }
-  tags_all = {
-    Name = "${var.project_environment}-${var.project_name}"
-  }
 }
 
 resource "aws_internet_gateway" "gw" {
