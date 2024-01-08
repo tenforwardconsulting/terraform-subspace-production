@@ -48,4 +48,6 @@ resource "aws_cloudwatch_metric_alarm" "worker" {
   dimensions = {
     InstanceId = "${aws_instance.worker[count.index].id}"
   }
+  actions_enabled     = "true"
+  alarm_actions       = [aws_sns_topic.ec2-alarm.arn]
 }
