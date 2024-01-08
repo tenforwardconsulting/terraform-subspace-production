@@ -76,7 +76,7 @@ resource "aws_lb_target_group" "production" {
   vpc_id   = aws_vpc.production-internal.id
   health_check {
     enabled             = true
-    matcher             = "200,301"
+    matcher             = "200"
     port                = "80"
     protocol            = "HTTP"
     path                = var.lb_health_check_path

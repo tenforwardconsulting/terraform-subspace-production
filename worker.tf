@@ -33,3 +33,21 @@ resource "aws_eip_association" "worker_eip_assoc" {
   instance_id   = aws_instance.worker[count.index].id
   allocation_id = aws_eip.worker[count.index].id
 }
+
+resource "aws_cloudwatch_metric_alarm" "worker" {
+  count                     = var.worker_instance_count
+  alarm_name                = "${var.project_name}-${var.project_environment}-worker-status-${aws_instance.worker[count.index].id}"
+  comparison_operator       = "GreaterThanOrEqualToThreshold"
+  evaluation_periods        = 2
+  metric_name               = "StatusCheckFailed"
+  namespace                 = "AWS/EC2"
+  period                    = 300
+  statistic                 = "Average"
+  alarm_description         = "This metric monitors both EC2 instance and system status"
+  insufficient_data_actions = []
+  dimensions = {
+    InstanceId = "${aws_instance.worker[count.index].id}"
+  }
+  actions_enabled     = "true"
+  alarm_actions       = [aws_sns_topic.ec2-alarm.arn]
+}
