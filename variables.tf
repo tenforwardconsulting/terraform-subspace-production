@@ -54,7 +54,7 @@ variable database_allocated_storage { type = number }
 variable database_max_allocated_storage { type = number }
 variable database_iops { type = number }
 variable final_snapshot_identifier { type = string }
-variable snapshot_identifier { 
+variable snapshot_identifier {
   type = string
   default = null
 }
@@ -85,4 +85,20 @@ variable redis_engine_version {
 variable redis_apply_immediately {
   type = bool
   default = false
+}
+
+variable "additional_rds_ingress" {
+  type = object({
+    cidr_blocks    = list(string)
+    description = string
+    from_port = number
+    ipv6_cidr_blocks = list(string)
+    prefix_list_ids = list(string)
+    protocol = string
+    security_groups = list(string)
+    self = bool
+    to_port = number
+    address = string
+  })
+  nullable = true
 }
