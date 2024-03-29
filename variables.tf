@@ -87,17 +87,12 @@ variable redis_apply_immediately {
   default = false
 }
 
-variable "additional_rds_ingress" {
-  type = object({
-    cidr_blocks    = list(string)
-    description = string
-    from_port = number
-    ipv6_cidr_blocks = list(string)
-    prefix_list_ids = list(string)
-    protocol = string
-    security_groups = list(string)
-    self = bool
-    to_port = number
-  })
-  nullable = true
+variable "rds_security_group_ingress_description" {
+  type = string
+  default = "PSQL traffic from webservers and workers"
+}
+
+variable "rds_security_group_ingress_security_groups" {
+  type = list(string)
+  default = [aws_security_group.production-webservers.id, aws_security_group.production-workers.id]
 }
