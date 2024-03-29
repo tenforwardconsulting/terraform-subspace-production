@@ -98,7 +98,6 @@ variable "additional_rds_ingress" {
     security_groups = list(string)
     self = bool
     to_port = number
-    address = string
   })
   nullable = true
 }
