@@ -124,12 +124,24 @@ resource "aws_security_group" "production-rds" {
   name        = "${var.project_environment}-rds"
   description = "${var.project_environment}-rds"
   vpc_id      = aws_vpc.production-internal.id
+}
 
-  ingress {
-    description      = "PSQL traffic from webservers and workers"
-    from_port        = 5432
-    to_port          = 5432
-    protocol         = "tcp"
-    security_groups  = [aws_security_group.production-webservers.id, aws_security_group.production-workers.id]
-  }
+resource "aws_vpc_security_group_ingress_rule" "production-rds-ingress-webservers" {
+  security_group_id = aws_security_group.production-rds.id
+
+  description = "PSQL traffic from webservers"
+  from_port   = 5432
+  ip_protocol = "tcp"
+  to_port     = 5432
+  referenced_security_group_id = aws_security_group.production-webservers.id
+}
+
+resource "aws_vpc_security_group_ingress_rule" "production-rds-ingress-workers" {
+  security_group_id = aws_security_group.production-rds.id
+
+  description = "PSQL traffic from workers"
+  from_port   = 5432
+  ip_protocol = "tcp"
+  to_port     = 5432
+  referenced_security_group_id = aws_security_group.production-workers.id
 }
