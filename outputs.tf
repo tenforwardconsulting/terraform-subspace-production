@@ -42,3 +42,7 @@ output "redis_nodes" {
 output "rds_security_group_id" {
   value = aws_security_group.production-rds.id
 }
+
+output "vpc_id" {
+  value = aws_vpc.production-internal.id
+}
