@@ -94,5 +94,5 @@ variable "rds_security_group_ingress_description" {
 
 variable "rds_security_group_ingress_security_groups" {
   type = list(string)
-  default = [aws_security_group.production-webservers.id, aws_security_group.production-workers.id]
+  nullable = true
 }

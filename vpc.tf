@@ -130,6 +130,6 @@ resource "aws_security_group" "production-rds" {
     from_port        = 5432
     to_port          = 5432
     protocol         = "tcp"
-    security_groups  = var.rds_security_group_ingress_security_groups
+    security_groups  = var.rds_security_group_ingress_security_groups == null ? [aws_security_group.production-webservers.id, aws_security_group.production-workers.id] : var.rds_security_group_ingress_security_groups
   }
 }
